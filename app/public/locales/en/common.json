@@ -1,0 +1,416 @@
+{
+  "nav": {
+    "home": "Home",
+    "collections": "Collections",
+    "blog": "Blog",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "brandName": "Tabjul Prabhakar Gupta Jewellers",
+    "cta": "Visit Showroom",
+    "goldRate": "Gold Rate"
+  },
+  "hero": {
+    "eyebrow": "SINCE 1991",
+    "headline": "Dharmavaram's Trusted Jewellery Destination",
+    "caption": "Three decades of craftsmanship, trust, and exceptional jewellery for every celebration.",
+    "cta": "Explore Now"
+  },
+  "marquee": {
+    "scrollText": "Bridal Jewellery • Gold & Diamond Collections • Trusted Since 1991 •",
+    "headline": "Jewellery Crafted for Life's Biggest Moments",
+    "caption": "From bridal sets and temple jewellery to contemporary diamond collections, every piece is selected to celebrate milestones that matter.",
+    "pillar1": {
+      "title": "Bridal Jewellery",
+      "desc": "Curated wedding collections for every ceremony."
+    },
+    "pillar2": {
+      "title": "Gold & Diamond Collections",
+      "desc": "Timeless designs and modern craftsmanship."
+    },
+    "pillar3": {
+      "title": "Trusted Since 1991",
+      "desc": "Three decades of excellence and customer trust."
+    }
+  },
+  "collections": {
+    "title": "Explore Our Collections",
+    "bridal": "Bridal Jewellery",
+    "diamond": "Diamond Jewellery",
+    "gold": "Gold Jewellery",
+    "temple": "Temple Jewellery",
+    "cta": "View All Collections"
+  },
+  "favourites": {
+    "eyebrow": "✦ Bridal Collection",
+    "headlineMain": "Bridal Jewellery",
+    "headlineSub": "Specialists",
+    "subhead": "Crafting unforgettable wedding moments with timeless gold, diamond, and bridal jewellery collections.",
+    "desc": "For generations, families have trusted us to be part of their most cherished celebrations. From engagement ceremonies to wedding day traditions, discover jewellery designed to complement every bride's story.",
+    "cta": "Explore Bridal Collection"
+  },
+  "trust": {
+    "title": "Why Families Trust Us",
+    "subheading": "For over three decades, we have built lasting relationships through trust, craftsmanship, and exceptional service.",
+    "card1": {
+      "title": "35+ Years of Trust",
+      "description": "Serving generations of families since 1991 with a commitment to quality, integrity, and excellence."
+    },
+    "card2": {
+      "title": "Certified Gold & Diamond Jewellery",
+      "description": "Every piece reflects our dedication to authenticity, craftsmanship, and customer confidence."
+    },
+    "card3": {
+      "title": "Transparent Pricing",
+      "description": "Honest pricing and complete transparency help customers make informed jewellery purchases."
+    },
+    "card4": {
+      "title": "Personalized Customer Experience",
+      "description": "Our team provides expert guidance to help every customer find the perfect piece for every occasion."
+    }
+  },
+  "spotlight": {
+    "eyebrow": "In the Spotlight",
+    "title": "Sonakshi",
+    "desc": "A curated glimpse into creations where artistry took center stage. Designed for remarkable moments.",
+    "cta": "Read Her Story"
+  },
+  "legacy": {
+    "stat1": {
+      "value": "35+",
+      "label": "Years of Trust"
+    },
+    "stat2": {
+      "value": "2",
+      "label": "Generations"
+    },
+    "stat3": {
+      "value": "Thousands",
+      "label": "of Happy Families"
+    },
+    "stat4": {
+      "value": "Premium",
+      "label": "Jewelry Collections"
+    },
+    "phase1": {
+      "year": "1991",
+      "title": "A Humble Beginning",
+      "desc": "What began in 1991 as a family jewelry store was built on a simple promise: genuine craftsmanship, honest relationships, and unwavering trust. Over the years, generations of families chose us for life's most cherished celebrations, making us a name they could rely on."
+    },
+    "phase2": {
+      "year": "Today",
+      "title": "A New Era of Excellence",
+      "desc": "While our founder's legacy continues to guide us, the next generation has transformed the experience for today's customer. Our modern showroom brings together timeless values, exceptional craftsmanship, and a carefully curated collection of fine jewelry designed for every milestone."
+    },
+    "timeline": {
+      "start": "1991",
+      "end": "Today"
+    }
+  },
+  "reviews": {
+    "eyebrow": "Google Reviews",
+    "title": "Trusted by Generations",
+    "subhead": "Hear from families who have made us a part of their most special moments.",
+    "cta": "Review Us on Google",
+    "trustRating": "4.8/5",
+    "trustLabel": "Based on Google Reviews",
+    "data": {
+      "review1": {
+        "name": "Smita Warjan",
+        "text": "One of the most trusted and best jeweller. Good collections of traditional and latest designs for all occasions. Very committed to order delivery to their customers. We got our ring delivered on time as committed."
+      },
+      "review2": {
+        "name": "Pyramid Minerals",
+        "text": "GOOD SHOP, Very famous in DHARMAVARAM Town. Very Reasonable Price shop, We can Trust the shop owners very much for quality and innovative products."
+      },
+      "review3": {
+        "name": "Kalva Kathyayini",
+        "text": "Reasonable price with best quality."
+      },
+      "review4": {
+        "name": "Sai Deekshith",
+        "text": "Definitely one of the best jewellery destinations in the entire Sri Sathya Sai district. They have an incredible collection that made my brother's wedding shopping a breeze. Truly a five star experience, we are so happy and I highly recommend them!"
+      },
+      "review5": {
+        "name": "Vishwanath Reddy",
+        "text": "Good Collection of traditional and latest designs."
+      },
+      "review6": {
+        "name": "Pramod kumar",
+        "text": "Excellent Collection and Very Customer Friendly Approach . I would Recommend this shop for all jewellery purchases."
+      },
+      "review7": {
+        "name": "Karthik P",
+        "text": "A better jewellery shop."
+      }
+    }
+  },
+  "blogPreview": {
+    "eyebrow": "Our Journal",
+    "title": "Jewellery Insights & Guides",
+    "desc": "Expert advice, buying guides, jewellery trends, and tips to help customers make informed decisions.",
+    "cta": "Read Full Story",
+    "viewAll": "View All Articles"
+  },
+  "instagram": {
+    "title": "Moments in Gold",
+    "cta": "Follow Us"
+  },
+  "contact": {
+    "eyebrow": "Visit Us",
+    "title": "Experience the Craft in Person",
+    "locationTitle": "Location",
+    "locationDesc": "Tabjul Prabhakar Gupta Jewellers\nTeru Bazar, Dharmavaram\nAndhra Pradesh, India",
+    "contactTitle": "Contact",
+    "hoursTitle": "Store Hours",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
+    "timings": {
+      "regular": "10 am – 2 pm, 4 – 8 pm",
+      "sunday": "10 am – 1:30 pm"
+    },
+    "mapTitle": "Tabjul Prabhakar Gupta Jewellers Map Location",
+    "ctaCall": "Call Now",
+    "ctaDirections": "Get Directions",
+    "ctaWhatsApp": "Chat on WhatsApp",
+    "trustSentence": "Serving families across Dharmavaram and surrounding regions since 1991."
+  },
+  "footer": {
+    "title": "Follow Us",
+    "businessName": "Tabjul Prabhakar Gupta Jewellers",
+    "address": "Teru Bazar, Dharmavaram\nAndhra Pradesh, India",
+    "phone": "+91 98492 89421",
+    "email": "tabjulprabhakargupta@gmail.com",
+    "mapsLink": "View on Google Maps",
+    "copyright": "© Tabjul Prabhakar Gupta Jewellers. All rights reserved.",
+    "links": {
+      "home": "Home",
+      "collections": "Collections",
+      "blog": "Blog",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "goldRate": "Today's Gold Rate"
+    }
+  },
+  "blogPage": {
+    "back": "Back to Home",
+    "eyebrow": "Our Journal",
+    "title": "Jewellery Insights & Guides",
+    "desc": "Expert advice, buying guides, jewellery trends, and tips to help you make informed decisions.",
+    "readTime": "min read",
+    "viewAll": "View All Articles"
+  },
+  "blogArticlePage": {
+    "back": "All Articles",
+    "related": "Related Articles",
+    "author": "Tabjul Prabhakar Gupta Jewellers",
+    "authorSubtitle": "Dharmavaram, Andhra Pradesh · Since 1991",
+    "readTime": "min read"
+  },
+  "blogData": {
+    "categories": {
+      "Bridal": "Bridal",
+      "Guides": "Guides",
+      "Care": "Care",
+      "Trends": "Trends"
+    },
+    "articles": {
+      "how-to-choose-bridal-jewellery-for-your-wedding": {
+        "title": "How to Choose Bridal Jewellery for Your Wedding",
+        "excerpt": "A complete guide to selecting bridal jewellery that complements your style, traditions, and wedding celebrations.",
+        "metaDescription": "Expert guide on choosing the perfect bridal jewellery for your wedding. Learn how to match jewellery with your outfit, skin tone, and wedding traditions.",
+        "body": [
+          "Your wedding day is one of the most memorable occasions of your life, and the jewellery you choose plays a central role in completing your bridal look. Whether you are drawn to traditional temple jewellery or prefer contemporary diamond designs, the right pieces can elevate your entire ensemble and become treasured heirlooms for generations.",
+          "## Start with Your Outfit",
+          "The first rule of bridal jewellery selection is to let your outfit guide your choices. A heavy Kanjeevaram saree pairs beautifully with a layered gold necklace and traditional jhumka earrings, while a lighter lehenga may call for a delicate diamond choker and chandelier earrings. Consider the neckline of your blouse—a high-neck calls for long chains or no necklace, while a sweetheart neckline is perfect for a statement choker.",
+          "## Consider Your Skin Tone",
+          "Gold jewellery tends to complement warm skin tones with yellow and olive undertones, creating a harmonious glow. If you have a cooler skin tone with pink or blue undertones, white gold, platinum, or diamond jewellery can be exceptionally flattering. Rose gold is a versatile option that works beautifully across most skin tones and adds a modern, romantic touch.",
+          "## Balance Is Everything",
+          "One of the most common mistakes brides make is wearing too many statement pieces at once. If you choose an elaborate necklace, keep your earrings relatively simple, and vice versa. A heavily embellished waist belt (vaddanam) pairs best with a single-strand necklace. The goal is to create a cohesive look where each piece enhances the others without competing for attention.",
+          "## Honour Your Traditions",
+          "Different communities and regions have their own bridal jewellery traditions. In Andhra Pradesh and Telangana, the mangalsutra, bottu, and pathakam are essential elements of a bride's ensemble. Understanding these traditions and incorporating them respectfully ensures your jewellery tells a story that resonates with your family heritage.",
+          "## Plan for the Full Celebration",
+          "Your wedding is typically more than a single event. Consider separate jewellery sets for the engagement, mehendi, sangeet, and reception. Lighter, more playful pieces work well for pre-wedding functions, while the main ceremony calls for your most significant pieces. This also gives you an opportunity to showcase different styles and metals across your celebrations.",
+          "## Investment and Sentiment",
+          "Bridal jewellery is both a financial investment and an emotional one. Choose pieces that you will want to wear again—at anniversaries, family celebrations, or simply passed down to the next generation. At Tabjul Prabhakar Gupta Jewellers, we help brides find pieces that honour tradition while reflecting their personal style, ensuring each item carries meaning beyond the wedding day.",
+          "## Final Tips",
+          "Book a private consultation at least three months before your wedding to allow time for customisation. Bring your outfit swatches and wedding mood board. Try on complete sets rather than individual pieces to see the full effect. And most importantly, choose pieces that make you feel confident and radiant—because that is the most beautiful jewellery of all."
+        ]
+      },
+      "gold-vs-diamond-jewellery": {
+        "title": "Gold vs Diamond Jewellery: Which Is Right for You?",
+        "excerpt": "Understand the differences between gold and diamond jewellery and discover which suits your occasion and preferences.",
+        "metaDescription": "Gold vs diamond jewellery: a comprehensive comparison guide. Learn which type of jewellery suits your occasion, budget, and personal style.",
+        "body": [
+          "Choosing between gold and diamond jewellery is one of the most common dilemmas faced by jewellery buyers. Both have their unique appeal, investment value, and aesthetic qualities. Understanding what makes each special can help you make a choice that aligns perfectly with your needs.",
+          "## The Timeless Appeal of Gold",
+          "Gold has been the cornerstone of Indian jewellery for thousands of years. Its warm lustre, cultural significance, and enduring value make it the most popular choice for weddings, festivals, and everyday wear. In Andhra Pradesh, gold jewellery holds particular importance—it is not just adornment but a symbol of prosperity, tradition, and family legacy.",
+          "## Understanding Gold Purity",
+          "Gold purity is measured in karats. 24-karat gold is the purest form but is too soft for intricate jewellery. 22-karat gold (91.6% pure) is the standard for traditional Indian jewellery, offering the perfect balance of purity and durability. 18-karat gold is often used for diamond-studded designs where the setting needs extra strength. Always look for BIS hallmark certification to ensure you are getting genuine purity.",
+          "## The Brilliance of Diamonds",
+          "Diamonds captivate with their unmatched sparkle and brilliance. A well-cut diamond refracts light in ways that no other gemstone can replicate. Diamond jewellery is typically more understated than gold, making it ideal for formal events, office wear, and modern occasions where elegance speaks louder than opulence.",
+          "## The 4Cs of Diamond Quality",
+          "When buying diamonds, understanding the 4Cs is essential: Cut determines how well the diamond reflects light; Clarity refers to the absence of inclusions; Colour grades range from D (colourless) to Z (light yellow); and Carat measures the diamond's weight. A well-balanced combination across all four parameters will give you the best value and visual impact.",
+          "## Investment Perspective",
+          "Gold offers a more liquid investment with prices that track global markets. You can easily sell or exchange gold jewellery, and its value tends to appreciate steadily over time. Diamonds, while valuable, have a less transparent resale market. However, high-quality certified diamonds (especially those above 1 carat with excellent cut grades) can hold and appreciate in value significantly.",
+          "## Occasions and Styling",
+          "Gold jewellery shines at traditional occasions—weddings, poojas, festivals, and family celebrations. Its warm tone complements Indian fabrics like silk and brocade. Diamond jewellery excels at contemporary events—cocktail parties, corporate functions, and modern celebrations. Many women today choose to blend both, wearing a diamond pendant on a gold chain or pairing gold bangles with a diamond ring.",
+          "## Making Your Decision",
+          "Consider your lifestyle, the occasions you dress for most, and your personal aesthetic. If you value tradition and cultural significance, gold may be your natural choice. If you prefer modern elegance and versatility, diamonds offer that refined edge. Many discerning buyers at Tabjul Prabhakar Gupta Jewellers choose to build a collection that includes both—because life calls for different kinds of brilliance."
+        ]
+      },
+      "jewellery-care-tips": {
+        "title": "Jewellery Care Tips to Keep Your Collection Looking New",
+        "excerpt": "Simple maintenance practices that help preserve the beauty and longevity of your jewellery.",
+        "metaDescription": "Learn essential jewellery care tips for gold, diamond, and gemstone jewellery. Keep your collection sparkling with these expert maintenance practices.",
+        "body": [
+          "Beautiful jewellery deserves beautiful care. Whether you own a single treasured piece or an extensive collection, proper maintenance ensures your jewellery retains its brilliance and value for decades. Here are expert-recommended practices from our master craftsmen at Tabjul Prabhakar Gupta Jewellers.",
+          "## Daily Habits That Protect Your Jewellery",
+          "The simplest rule is \"last on, first off.\" Put your jewellery on after applying perfume, hairspray, and makeup. Remove it before washing hands, showering, or exercising. Chemicals in cosmetics and cleaning products can tarnish metals and dull gemstones over time. Swimming in chlorinated pools is particularly harmful to gold and can loosen diamond settings.",
+          "## Cleaning Gold Jewellery at Home",
+          "For routine cleaning, soak your gold pieces in a solution of warm water and a few drops of mild dish soap for 15-20 minutes. Use a soft-bristled toothbrush to gently clean around stones and intricate details. Rinse thoroughly under warm running water and pat dry with a soft, lint-free cloth. Avoid using abrasive cleaners, baking soda, or toothpaste—these can scratch the surface.",
+          "## Caring for Diamond Jewellery",
+          "Diamonds may be the hardest natural substance, but they can still attract oils and dust that diminish their sparkle. Clean diamond jewellery weekly if worn regularly. The same warm water and mild soap method works well. For stubborn grime, a brief soak in a mixture of one part ammonia to six parts water can restore brilliant shine. Always handle diamond pieces by the band or setting, not the stone.",
+          "## Gemstone-Specific Care",
+          "Different gemstones require different approaches. Emeralds are often treated with oils and should never be cleaned with ultrasonic cleaners or steam. Pearls are organic and extremely sensitive—wipe them with a damp cloth after each wear and store them flat. Rubies and sapphires are relatively hardy but should still be cleaned gently. When in doubt, consult your jeweller before cleaning any gemstone piece.",
+          "## Proper Storage",
+          "Store each piece separately to prevent scratching—soft pouches or individual compartments in a jewellery box are ideal. Keep your jewellery in a cool, dry place away from direct sunlight, which can fade certain gemstones. Anti-tarnish strips placed in your storage box can help prevent oxidation. Never store jewellery in plastic bags, as trapped moisture can accelerate tarnishing.",
+          "## Professional Maintenance",
+          "Have your significant pieces professionally inspected and cleaned at least once a year. A jeweller can check for loose stones, worn prongs, or weakened clasps before they become problems. Professional ultrasonic or steam cleaning can restore brilliance that home cleaning cannot achieve. At Tabjul Prabhakar Gupta Jewellers, we offer complimentary cleaning and inspection for pieces purchased from our collection.",
+          "## When to Seek Repair",
+          "Do not ignore signs of wear. A loose stone can be lost; a weakened clasp can mean losing an entire piece. If you notice any wobble in a stone setting, hear a clicking sound when you shake a piece, or see visible wear on prongs, bring it to a professional immediately. Early repair is always less costly than replacement.",
+          "## Insuring Your Collection",
+          "For high-value pieces, consider jewellery insurance. Document your collection with photographs, purchase receipts, and certification details. Keep this documentation separate from the jewellery itself. Updated appraisals every few years ensure your coverage reflects current market values."
+        ]
+      },
+      "latest-bridal-jewellery-trends-andhra-pradesh": {
+        "title": "Latest Bridal Jewellery Trends in Andhra Pradesh",
+        "excerpt": "Explore the most popular bridal jewellery styles and wedding trends shaping celebrations across Andhra Pradesh.",
+        "metaDescription": "Discover the latest bridal jewellery trends in Andhra Pradesh for 2026. From temple jewellery revivals to modern fusion designs, explore what brides are choosing.",
+        "body": [
+          "Andhra Pradesh has always been a region where bridal jewellery is not just an accessory—it is a statement of heritage, family pride, and artistic excellence. In 2026, we are seeing fascinating trends that blend centuries-old traditions with contemporary sensibilities, creating looks that honour the past while embracing the future.",
+          "## The Temple Jewellery Revival",
+          "Temple jewellery, inspired by the ornaments adorning deities in South Indian temples, is experiencing a powerful resurgence. Brides are choosing elaborate sets featuring Lakshmi pendants, mango-motif (manga malai) necklaces, and coin-work (kasumala) designs. What makes this trend particularly interesting is that modern brides are requesting lighter-weight versions that maintain the visual grandeur without the heaviness of traditional pieces.",
+          "## Layered Necklace Sets",
+          "The trend of wearing multiple necklaces of varying lengths has become a defining look for AP brides. A typical layered arrangement might include a short choker (addiga), a medium-length haram with pendant, and a long sautoir chain. This creates a cascading effect that adds depth and dimension to the bridal ensemble. The key is choosing pieces that complement each other in design motif while varying in scale.",
+          "## Oversized Jhumkas and Statement Earrings",
+          "Earrings have taken centre stage in 2026. Oversized jhumkas with intricate filigree work, chandbalis with pearl drops, and contemporary ear cuffs are all trending. Many brides are choosing earrings as their primary statement piece and keeping their neckpiece relatively understated—a reversal of the traditional approach that creates a fresh, modern look.",
+          "## The Vaddanam Renaissance",
+          "The traditional waist belt (vaddanam) is making a strong comeback, especially for Kanjeevaram and Dharmavaram saree weddings. Contemporary vaddanams feature slimmer profiles with detachable elements, allowing brides to wear them as statement belts even after the wedding. Designs incorporating rubies, emeralds, and uncut diamonds (polki) are particularly popular in the Rayalaseema region.",
+          "## Fusion Designs: East Meets Contemporary",
+          "A growing number of AP brides are requesting custom pieces that fuse traditional motifs with modern settings. Think peacock motifs rendered in a geometric art-deco style, or traditional bottu designs set with brilliant-cut diamonds instead of uncut stones. This fusion approach allows brides to honour their cultural heritage while expressing their individual personality.",
+          "## Coloured Gemstones Over Pure Gold",
+          "While gold remains the foundation, there is a notable shift towards incorporating coloured gemstones. Emerald-studded necklaces, ruby-encrusted bangles, and sapphire-accented maang tikkas are becoming increasingly popular. These gemstones add vibrant colour contrast against gold and complement the rich hues of traditional silk sarees.",
+          "## Minimalist Bridal—A New Category",
+          "Perhaps the most surprising trend is the emergence of minimalist bridal jewellery. Some modern brides, particularly for civil ceremonies or destination weddings, are choosing a single exquisite piece—a beautifully crafted diamond necklace or an heirloom gold choker—and letting it shine on its own. This pared-back approach is gaining acceptance even in traditional families.",
+          "## What We See at Tabjul Prabhakar Gupta Jewellers",
+          "At our boutique in Dharmavaram, we are witnessing all these trends firsthand. Brides come in with Pinterest boards and Instagram saves, but they leave with pieces that tell their unique story. The most beautiful bridal jewellery is always the kind that reflects who the bride truly is—rooted in tradition yet unafraid to be herself."
+        ]
+      }
+    }
+  },
+  "localSeo": {
+    "title": "Trusted Jewellery Store in Dharmavaram Since 1991",
+    "body": "For over three decades, Tabjul Prabhakar Gupta Jewellers has been a trusted destination for gold jewellery, diamond jewellery, bridal jewellery, and fine jewellery collections in Dharmavaram, Andhra Pradesh. Built on a foundation of trust, craftsmanship, and customer relationships, our showroom continues to serve generations of families seeking exceptional jewellery for life's most meaningful celebrations. From bridal collections and traditional gold jewellery to contemporary diamond designs, every piece reflects our commitment to quality and elegance."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated: June 2026",
+    "intro": "At Tabjul Prabhakar Gupta Jewellers, we are committed to protecting your privacy. This Privacy Policy details how we collect, use, and safeguard your personal information when you visit our showroom in Dharmavaram or interact with our online services.",
+    "sections": [
+      {
+        "title": "1. Information We Collect",
+        "content": "We may collect personal details such as your name, telephone number, email, and physical address when you request a custom jewellery quote, make purchases, or contact our team via phone or WhatsApp."
+      },
+      {
+        "title": "2. How We Use Your Information",
+        "content": "Your information is used solely to coordinate custom orders, process transactions, answer enquiries, provide delivery details, and keep you informed of exclusive collections or seasonal offers. We do not sell or lease your details to third parties."
+      },
+      {
+        "title": "3. Data Security & Integrity",
+        "content": "We implement robust security measures to preserve the safety of your personal details. Access to your transaction data and customer details is strictly limited to authorized personnel to maintain your trust."
+      },
+      {
+        "title": "4. Cookies & Web Analytics",
+        "content": "Our website uses essential analytics cookies to monitor website performance and improve user experience. By browsing, you consent to these minimal caching operations designed to streamline page loading."
+      },
+      {
+        "title": "5. Contact & Rectification",
+        "content": "If you wish to update, modify, or request deletion of any contact information we hold, please contact our Dharmavaram showroom directly at +91 98492 89421 or email tabjulprabhakargupta@gmail.com."
+      }
+    ]
+  },
+  "showroom": {
+    "title": "Experience Our Showroom",
+    "subhead": "Step inside a destination where generations of trust meet modern elegance. Explore our showroom, discover our collections, and experience the personalized service that has made us a trusted name since 1991.",
+    "items": {
+      "exteriorMain": {
+        "caption": "A Landmark in Dharmavaram",
+        "desc": "Our showroom has welcomed generations of families seeking exceptional jewellery and trusted service."
+      },
+      "exteriorClose": {
+        "caption": "A Legacy That Stands Strong",
+        "desc": "A closer look at the destination that has served customers with integrity and craftsmanship since 1991."
+      },
+      "customerExperience": {
+        "caption": "Personalized Customer Experience",
+        "desc": "Every visit is guided by expert advice, thoughtful service, and attention to detail."
+      },
+      "interiorView": {
+        "caption": "Curated Collections Under One Roof",
+        "desc": "Explore a wide range of gold, diamond, bridal, and fine jewellery collections in a refined setting."
+      },
+      "ownersFamily": {
+        "caption": "The Family Behind the Legacy",
+        "desc": "Three decades of trust, built and carried forward by a family committed to quality, relationships, and excellence."
+      }
+    }
+  },
+  "goldRatePage": {
+    "title": "Today's Gold Rate in Dharmavaram",
+    "subtitle": "Live 22K, 24K and 18K gold rates. Updated today.",
+    "widgetTitle": "Today's Gold Rate (1g)",
+    "widgetLive": "Live Market Rates",
+    "widgetUnavailable": "Rates temporarily unavailable",
+    "k22": "22K Gold Rate",
+    "k24": "24K Gold Rate",
+    "k18": "18K Gold Rate",
+    "perGram": "per gram",
+    "per10Gram": "per 10g",
+    "lastUpdated": "Last updated",
+    "infoHeading": "Gold Rate Information for Dharmavaram",
+    "infoContent": "Stay updated with today's latest gold rates in Dharmavaram. Whether you are planning a jewellery purchase, bridal shopping, or investment in gold, checking current gold prices helps you make informed decisions. Tabjul Prabhakar Gupta Jewellers provides trusted jewellery and transparent pricing backed by over three decades of customer trust.",
+    "faqHeading": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "q": "How often are gold rates updated?",
+        "a": "Gold rates are updated daily, reflecting global market trends, currency exchange rates, and local market conditions in Dharmavaram."
+      },
+      {
+        "q": "Why do gold prices change daily?",
+        "a": "Gold prices fluctuate daily due to global factors including international market demand, inflation rates, central bank reserves, interest rates, USD-INR exchange rate changes, and geopolitical events."
+      },
+      {
+        "q": "What is the difference between 22K and 24K gold?",
+        "a": "24K gold is pure gold (99.9% purity) and is soft, making it ideal for investment coins/bars but less suitable for durable jewellery. 22K gold is 91.6% pure gold mixed with 8.4% alloy metals (like copper or silver) to make it durable and strong for daily-wear jewellery."
+      },
+      {
+        "q": "When is the best time to buy gold jewellery?",
+        "a": "While gold prices change daily, popular times to buy gold jewellery are during major festivals like Akshaya Tritiya, Dhanteras, and wedding seasons when special collections are launched, or during market price dips. Choosing a certified, trusted jeweller ensures authentic quality."
+      }
+    ],
+    "locationSignal": "📍 Updated for Dharmavaram, Andhra Pradesh",
+    "ctaHeading": "Planning to Buy Jewellery?",
+    "ctaSubtitle": "Visit our showroom for personalized assistance and explore our latest collections.",
+    "ctaVisit": "Visit Showroom",
+    "ctaWhatsApp": "Chat on WhatsApp",
+    "seoMoveHeading": "Why Gold Rates in Dharmavaram Change Daily",
+    "seoMoveContent": "Gold rates in Dharmavaram fluctuate daily due to several global and domestic economic factors. Primarily, international gold prices (set in USD by global markets) play a major role. Because India imports a significant portion of its gold, the exchange rate between the Indian Rupee (INR) and the US Dollar (USD) directly impacts local pricing; a weaker Rupee makes gold more expensive. Additionally, national import duties and local taxes set by the government alter import costs. Locally in Dharmavaram, seasonal market demand during major festivals, regional weddings, and auspicious times also creates minor price variations. At Tabjul Prabhakar Gupta Jewellers, we ensure complete transparency by updating our rates daily in alignment with these market indicators."
+  }
+}

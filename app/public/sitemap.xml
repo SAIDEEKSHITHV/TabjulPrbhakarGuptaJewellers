@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://tpgjewellers.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/?lang=te" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/" />
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Blog List Page -->
+  <url>
+    <loc>https://tpgjewellers.com/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/blog?lang=en" />
+    <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/blog?lang=te" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/blog" />
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Article: How to Choose Bridal Jewellery for Your Wedding -->
+  <url>
+    <loc>https://tpgjewellers.com/blog/how-to-choose-bridal-jewellery-for-your-wedding</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/blog/how-to-choose-bridal-jewellery-for-your-wedding?lang=en" />
+    <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/blog/how-to-choose-bridal-jewellery-for-your-wedding?lang=te" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/blog/how-to-choose-bridal-jewellery-for-your-wedding" />
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Article: Gold vs Diamond Jewellery: Which Is Right for You? -->
+  <url>
+    <loc>https://tpgjewellers.com/blog/gold-vs-diamond-jewellery</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/blog/gold-vs-diamond-jewellery?lang=en" />
+    <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/blog/gold-vs-diamond-jewellery?lang=te" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/blog/gold-vs-diamond-jewellery" />
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Article: Jewellery Care Tips to Keep Your Collection Looking New -->
+  <url>
+    <loc>https://tpgjewellers.com/blog/jewellery-care-tips</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/blog/jewellery-care-tips?lang=en" />
+    <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/blog/jewellery-care-tips?lang=te" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/blog/jewellery-care-tips" />
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Article: Latest Bridal Jewellery Trends in Andhra Pradesh -->
+  <url>
+    <loc>https://tpgjewellers.com/blog/latest-bridal-jewellery-trends-andhra-pradesh</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/blog/latest-bridal-jewellery-trends-andhra-pradesh?lang=en" />
+    <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/blog/latest-bridal-jewellery-trends-andhra-pradesh?lang=te" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/blog/latest-bridal-jewellery-trends-andhra-pradesh" />
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Gold Rate Page -->
+  <url>
+    <loc>https://tpgjewellers.com/gold-rate-dharmavaram</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/gold-rate-dharmavaram?lang=en" />
+    <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/gold-rate-dharmavaram?lang=te" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/gold-rate-dharmavaram" />
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Privacy Policy Page -->
+  <url>
+    <loc>https://tpgjewellers.com/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/privacy?lang=en" />
+    <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/privacy?lang=te" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/privacy" />
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
