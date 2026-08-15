@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MapPin, Phone, Clock } from 'lucide-react';
+import { trackEvent } from '../lib/analytics';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -168,6 +169,7 @@ export default function ContactSection() {
             {/* Call Now */}
             <a
               href="tel:+919849289421"
+              onClick={() => trackEvent('click_call_contact', 'Engagement', 'Contact Section')}
               className="group inline-flex items-center justify-center gap-2.5 px-5 py-3 border border-[rgba(201,162,74,0.35)] rounded-lg text-[#F5EFE7] font-sans text-[12px] md:text-[13px] uppercase tracking-[0.12em] font-medium hover:bg-[rgba(201,162,74,0.1)] hover:border-[#C9A24A] hover:text-[#C9A24A] transition-all duration-300"
             >
               <Phone size={16} className="text-[#C9A24A]" />
@@ -179,6 +181,7 @@ export default function ContactSection() {
               href="https://maps.google.com/?q=Tabjul+Prabhakar+Gupta+Jewellers,Dharmavaram"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent('click_directions_contact', 'Engagement', 'Contact Section')}
               className="group inline-flex items-center justify-center gap-2.5 px-5 py-3 border border-[rgba(201,162,74,0.35)] rounded-lg text-[#F5EFE7] font-sans text-[12px] md:text-[13px] uppercase tracking-[0.12em] font-medium hover:bg-[rgba(201,162,74,0.1)] hover:border-[#C9A24A] hover:text-[#C9A24A] transition-all duration-300"
             >
               <MapPin size={16} className="text-[#C9A24A]" />
@@ -190,6 +193,7 @@ export default function ContactSection() {
               href="https://wa.me/919849289421"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent('click_whatsapp_contact', 'Engagement', 'Contact Section')}
               className="group inline-flex items-center justify-center gap-2.5 px-5 py-3 border border-[rgba(201,162,74,0.35)] rounded-lg text-[#F5EFE7] font-sans text-[12px] md:text-[13px] uppercase tracking-[0.12em] font-medium hover:bg-[rgba(201,162,74,0.1)] hover:border-[#C9A24A] hover:text-[#C9A24A] transition-all duration-300"
             >
               {/* WhatsApp SVG icon */}

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router';
+import { useEffect, useState, lazy, Suspense } from 'react';
+import { Routes, Route, useLocation } from 'react-router';
+import { initAnalytics, trackPageView } from './lib/analytics';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import i18n from './i18n';
@@ -17,66 +18,104 @@ import InstagramSection from './sections/InstagramSection';
 import ContactSection from './sections/ContactSection';
 import LocalSeoSection from './sections/LocalSeoSection';
 import FooterSection from './sections/FooterSection';
-import BlogPage from './pages/BlogPage';
-import BlogArticlePage from './pages/BlogArticlePage';
-import PrivacyPage from './pages/PrivacyPage';
-import GoldRatePage from './pages/GoldRatePage';
+
+// Lazy-loaded routes for code splitting
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogArticlePage = lazy(() => import('./pages/BlogArticlePage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+const GoldRatePage = lazy(() => import('./pages/GoldRatePage'));
+const CollectionDetailPage = lazy(() => import('./pages/CollectionDetailPage'));
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
+
+function PageLoader() {
+  return (
+    <div className="min-h-screen bg-[#0B0B0C] flex flex-col justify-center items-center text-[#F5EFE7]">
+      <div className="w-8 h-8 border-2 border-[#C9A24A] border-t-transparent rounded-full animate-spin mb-4" />
+      <p className="font-mono text-xs uppercase tracking-widest text-[#B8B0A8]">
+        Loading Masterpiece...
+      </p>
+    </div>
+  );
+}
+
+function AnalyticsTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
+  useEffect(() => {
+    trackPageView(location.pathname + location.search);
+  }, [location]);
+
+  return null;
+}
 
 gsap.registerPlugin(ScrollTrigger);
 
 function HomePage() {
   useEffect(() => {
+    let globalSnapTrigger: ScrollTrigger | null = null;
+
     const setupSnap = () => {
-      // Get all pinned ScrollTriggers, sorted by start position
-      const pinned = ScrollTrigger.getAll()
-        .filter(st => !!st.vars.pin)
-        .sort((a, b) => a.start - b.start);
+      if (globalSnapTrigger) {
+        globalSnapTrigger.kill();
+        globalSnapTrigger = null;
+      }
 
-      const maxScroll = ScrollTrigger.maxScroll(window);
-
-      if (!maxScroll || pinned.length === 0) return;
-
-      // Build ranges and snap targets from pinned sections
-      const pinnedRanges = pinned.map(st => {
-        const start = st.start / maxScroll;
-        const end = (st.end ?? st.start) / maxScroll;
-        const len = end - start;
-        const trigger = st.trigger as any;
-
-        // Check if this is the legacy section
-        const isLegacy = trigger && (
-          (trigger instanceof HTMLElement && trigger.id === 'legacy-section') ||
-          (typeof trigger === 'string' && trigger.includes('legacy-section'))
-        );
-
-        if (isLegacy) {
-          // For legacy section, we define three stable snap targets:
-          // 1. 1991 phase (around 15% of the pinned duration)
-          // 2. Today phase (around 43% of the pinned duration)
-          // 3. Stats / End phase (around 75% of the pinned duration)
-          return {
-            start,
-            end,
-            targets: [
-              start + len * 0.15,
-              start + len * 0.43,
-              start + len * 0.75,
-            ],
-          };
-        }
-
-        // Standard pinned sections snap to their center
-        return {
-          start,
-          end,
-          targets: [start + len * 0.45],
-        };
-      });
-
-      // Create global snap
-      ScrollTrigger.create({
+      // Create global snap with dynamic snapTo calculations
+      globalSnapTrigger = ScrollTrigger.create({
         snap: {
           snapTo: (value: number) => {
+            const maxScroll = ScrollTrigger.maxScroll(window);
+            if (!maxScroll) return value;
+
+            // Get all pinned ScrollTriggers dynamically, excluding the global snap trigger itself
+            const pinned = ScrollTrigger.getAll()
+              .filter(st => !!st.vars.pin && st !== globalSnapTrigger)
+              .sort((a, b) => a.start - b.start);
+
+            if (pinned.length === 0) return value;
+
+            // Build ranges and snap targets dynamically from current ScrollTriggers
+            const pinnedRanges = pinned.map(st => {
+              const start = st.start / maxScroll;
+              const end = (st.end ?? st.start) / maxScroll;
+              const len = end - start;
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const trigger = st.trigger as any;
+
+              // Check if this is the legacy section
+              const isLegacy = trigger && (
+                (trigger instanceof HTMLElement && trigger.id === 'legacy-section') ||
+                (typeof trigger === 'string' && trigger.includes('legacy-section'))
+              );
+
+              if (isLegacy) {
+                // For legacy section, we define three stable snap targets:
+                // 1. 1991 phase (around 15% of the pinned duration)
+                // 2. Today phase (around 43% of the pinned duration)
+                // 3. Stats / End phase (around 75% of the pinned duration)
+                return {
+                  start,
+                  end,
+                  targets: [
+                    start + len * 0.15,
+                    start + len * 0.43,
+                    start + len * 0.75,
+                  ],
+                };
+              }
+
+              // Standard pinned sections snap to their center
+              return {
+                start,
+                end,
+                targets: [start + len * 0.45],
+              };
+            });
+
             // Find the active range, including a small buffer
             const matchedRange = pinnedRanges.find(
               r => value >= r.start - 0.015 && value <= r.end + 0.015
@@ -113,10 +152,9 @@ function HomePage() {
     return () => {
       clearTimeout(timer);
       window.removeEventListener('resize', handleResize);
-      // Only kill the global snap trigger, not all triggers
-      const allTriggers = ScrollTrigger.getAll();
-      const globalSnap = allTriggers.find(st => st.vars.snap && !st.vars.pin);
-      if (globalSnap) globalSnap.kill();
+      if (globalSnapTrigger) {
+        globalSnapTrigger.kill();
+      }
     };
   }, []);
 
@@ -189,15 +227,60 @@ function App() {
 
   return (
     <div className="grain-overlay relative">
+      <AnalyticsTracker />
       <Navigation />
 
       <div className={`lang-container ${isSwitching ? 'lang-switching' : ''}`}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:slug" element={<BlogArticlePage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/gold-rate-dharmavaram" element={<GoldRatePage />} />
+          <Route
+            path="/blog"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <BlogPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/blog/:slug"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <BlogArticlePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/privacy"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <PrivacyPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/gold-rate-dharmavaram"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <GoldRatePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/collections/:slug"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <CollectionDetailPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/products/:slug"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <ProductDetailPage />
+              </Suspense>
+            }
+          />
         </Routes>
       </div>
     </div>

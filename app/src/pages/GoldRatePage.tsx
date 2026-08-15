@@ -35,6 +35,23 @@ export default function GoldRatePage() {
       );
     }
 
+    // Update canonical link
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    let canonicalUrl = window.location.origin + window.location.pathname;
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang');
+    if (lang === 'te' || lang === 'en') {
+      canonicalUrl += `?lang=${lang}`;
+    }
+    if (canonicalLink) {
+      canonicalLink.setAttribute('href', canonicalUrl);
+    } else {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      canonicalLink.setAttribute('href', canonicalUrl);
+      document.head.appendChild(canonicalLink);
+    }
+
     // Load Live Gold Rates
     let isMounted = true;
     getGoldRates()

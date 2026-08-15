@@ -112,6 +112,7 @@ export default function Navigation() {
             return (
               <Tag
                 key={link.label}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 {...(props as any)}
                 className="font-serif text-[#F5EFE7] text-3xl md:text-4xl hover:text-[#C9A24A] transition-colors duration-300 tracking-wide"
                 style={{

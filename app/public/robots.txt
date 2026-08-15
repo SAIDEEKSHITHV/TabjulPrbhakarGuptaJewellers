@@ -1,6 +1,7 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
+Disallow: /admin/
 
 # Host
 Host: https://tpgjewellers.com

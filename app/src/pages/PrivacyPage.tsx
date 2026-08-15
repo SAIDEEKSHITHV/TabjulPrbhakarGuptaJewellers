@@ -15,6 +15,23 @@ export default function PrivacyPage() {
     // Set page title
     document.title = `${t('privacy.title')} | ${t('nav.brandName')}`;
 
+    // Update canonical link
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    let canonicalUrl = window.location.origin + window.location.pathname;
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang');
+    if (lang === 'te' || lang === 'en') {
+      canonicalUrl += `?lang=${lang}`;
+    }
+    if (canonicalLink) {
+      canonicalLink.setAttribute('href', canonicalUrl);
+    } else {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      canonicalLink.setAttribute('href', canonicalUrl);
+      document.head.appendChild(canonicalLink);
+    }
+
     // Entrance animation
     const container = containerRef.current;
     if (!container) return;

@@ -52,7 +52,8 @@ export default function ShowroomSection() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const handle = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(handle);
   }, []);
 
   // Lock body scroll when Lightbox is active
