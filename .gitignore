@@ -19,3 +19,8 @@ pnpm-debug.log*
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Temporary test/scratch files & CLI cache
+scratch-test.js
+supabase/.temp/
+

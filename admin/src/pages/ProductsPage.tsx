@@ -169,11 +169,13 @@ export default function ProductsPage() {
         is_featured: prod.is_featured,
         is_published: false, // Default to draft to protect publishing
         sort_order: prod.sort_order + 1,
+        weight: prod.weight,
         meta_title_en: prod.meta_title_en,
         meta_title_te: prod.meta_title_te,
         meta_description_en: prod.meta_description_en,
         meta_description_te: prod.meta_description_te,
       };
+
 
       const { data: newProd, error: insertErr } = await supabase
         .from('products')

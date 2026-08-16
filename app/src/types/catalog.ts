@@ -1,3 +1,14 @@
+export interface CollectionSettings {
+  default_title_en_pattern?: string;
+  default_title_te_pattern?: string;
+  default_description_en?: string;
+  default_description_te?: string;
+  default_seo_title?: string;
+  default_seo_description?: string;
+  default_category?: string;
+  default_display_behavior?: string;
+}
+
 export interface Collection {
   id: string;
   slug: string;
@@ -8,6 +19,7 @@ export interface Collection {
   cover_image_url: string | null;
   sort_order: number;
   is_published: boolean;
+  settings: CollectionSettings;
   created_at: string;
   updated_at: string;
 }
@@ -25,6 +37,7 @@ export interface Product {
   is_featured: boolean;
   is_published: boolean;
   sort_order: number;
+  weight: number | null;
   meta_title_en: string | null;
   meta_title_te: string | null;
   meta_description_en: string | null;
@@ -48,3 +61,4 @@ export interface ProductImage {
   is_primary: boolean;
   created_at: string;
 }
+

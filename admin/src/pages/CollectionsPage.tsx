@@ -27,6 +27,16 @@ export default function CollectionsPage() {
   const [sortOrder, setSortOrder] = useState('0');
   const [isPublished, setIsPublished] = useState(true);
   
+  // settings defaults states
+  const [defaultTitleEnPattern, setDefaultTitleEnPattern] = useState('');
+  const [defaultTitleTePattern, setDefaultTitleTePattern] = useState('');
+  const [defaultDescEn, setDefaultDescEn] = useState('');
+  const [defaultDescTe, setDefaultDescTe] = useState('');
+  const [defaultSeoTitle, setDefaultSeoTitle] = useState('');
+  const [defaultSeoDescription, setDefaultSeoDescription] = useState('');
+  const [defaultCategory, setDefaultCategory] = useState('');
+  const [defaultDisplayBehavior, setDefaultDisplayBehavior] = useState('standard');
+
   // Cover image states
   const [coverUrl, setCoverUrl] = useState('');
   const [isUploading, setIsUploading] = useState(false);
@@ -65,6 +75,18 @@ export default function CollectionsPage() {
     setSortOrder(col.sort_order.toString());
     setIsPublished(col.is_published);
     setCoverUrl(col.cover_image_url || '');
+    
+    // Load defaults settings fields
+    const settings = col.settings || {};
+    setDefaultTitleEnPattern(settings.default_title_en_pattern || '');
+    setDefaultTitleTePattern(settings.default_title_te_pattern || '');
+    setDefaultDescEn(settings.default_description_en || '');
+    setDefaultDescTe(settings.default_description_te || '');
+    setDefaultSeoTitle(settings.default_seo_title || '');
+    setDefaultSeoDescription(settings.default_seo_description || '');
+    setDefaultCategory(settings.default_category || '');
+    setDefaultDisplayBehavior(settings.default_display_behavior || 'standard');
+    
     setError(null);
   };
 
@@ -117,6 +139,16 @@ export default function CollectionsPage() {
         sort_order: orderNum,
         is_published: isPublished,
         cover_image_url: coverUrl.trim() || null,
+        settings: {
+          default_title_en_pattern: defaultTitleEnPattern.trim(),
+          default_title_te_pattern: defaultTitleTePattern.trim(),
+          default_description_en: defaultDescEn.trim(),
+          default_description_te: defaultDescTe.trim(),
+          default_seo_title: defaultSeoTitle.trim(),
+          default_seo_description: defaultSeoDescription.trim(),
+          default_category: defaultCategory.trim(),
+          default_display_behavior: defaultDisplayBehavior
+        }
       };
 
       const { error: dbErr } = await supabase
@@ -139,6 +171,7 @@ export default function CollectionsPage() {
       setIsSaving(false);
     }
   };
+
 
   return (
     <AdminLayout>
@@ -424,6 +457,130 @@ export default function CollectionsPage() {
                     </div>
                   </div>
                 </div>
+
+                {/* Product Defaults Settings (Database-backed) */}
+                <div className="space-y-2 border-t border-white/[0.04] pt-4">
+                  <details className="border border-[rgba(201,162,74,0.15)] rounded bg-[#0B0B0C]/40 p-4">
+                    <summary className="cursor-pointer text-xs uppercase tracking-widest text-[#C9A24A] font-mono font-medium select-none outline-none">
+                      Product Defaults (Configurable Settings)
+                    </summary>
+                    <div className="space-y-4 pt-3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-1.5">
+                          <label className="block text-[9px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                            Default Title Pattern (English)
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="e.g. {name} - {weight}g"
+                            value={defaultTitleEnPattern}
+                            onChange={(e) => setDefaultTitleEnPattern(e.target.value)}
+                            className="w-full px-3 py-2 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
+                          />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="block text-[9px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                            Default Title Pattern (Telugu)
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="e.g. {name} - {weight}గ్రా"
+                            value={defaultTitleTePattern}
+                            onChange={(e) => setDefaultTitleTePattern(e.target.value)}
+                            className="w-full px-3 py-2 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-1.5">
+                          <label className="block text-[9px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                            Default Description (English)
+                          </label>
+                          <textarea
+                            rows={2}
+                            placeholder="Exquisite piece weighing {weight}g..."
+                            value={defaultDescEn}
+                            onChange={(e) => setDefaultDescEn(e.target.value)}
+                            className="w-full px-3 py-1.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A] resize-none"
+                          />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="block text-[9px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                            Default Description (Telugu)
+                          </label>
+                          <textarea
+                            rows={2}
+                            placeholder="బరువు {weight} గ్రాములు..."
+                            value={defaultDescTe}
+                            onChange={(e) => setDefaultDescTe(e.target.value)}
+                            className="w-full px-3 py-1.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A] resize-none"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-1.5">
+                          <label className="block text-[9px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                            Default SEO Title Pattern
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="Buy {name} | TPG"
+                            value={defaultSeoTitle}
+                            onChange={(e) => setDefaultSeoTitle(e.target.value)}
+                            className="w-full px-3 py-2 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
+                          />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="block text-[9px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                            Default SEO Description Pattern
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="Premium piece weighing {weight}g..."
+                            value={defaultSeoDescription}
+                            onChange={(e) => setDefaultSeoDescription(e.target.value)}
+                            className="w-full px-3 py-2 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-1.5">
+                          <label className="block text-[9px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                            Default Category
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="e.g. Necklace, Rings"
+                            value={defaultCategory}
+                            onChange={(e) => setDefaultCategory(e.target.value)}
+                            className="w-full px-3 py-2 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
+                          />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="block text-[9px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                            Default Display Behavior
+                          </label>
+                          <select
+                            value={defaultDisplayBehavior}
+                            onChange={(e) => setDefaultDisplayBehavior(e.target.value)}
+                            className="w-full px-3 py-2 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A] cursor-pointer"
+                          >
+                            <option value="standard">Standard Catalog</option>
+                            <option value="featured">Featured (Homepage + Showcase)</option>
+                          </select>
+                        </div>
+                      </div>
+                      
+                      <div className="text-[10px] text-zinc-500 font-light leading-relaxed border-t border-white/[0.04] pt-2">
+                        Placeholders: <code>{"{name}"}</code>, <code>{"{weight}"}</code>, <code>{"{collection}"}</code>, <code>{"{sequence}"}</code>.
+                      </div>
+                    </div>
+                  </details>
+                </div>
+
 
                 {/* Actions */}
                 <div className="flex gap-3 justify-end border-t border-white/[0.04] pt-4">

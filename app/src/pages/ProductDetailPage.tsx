@@ -319,14 +319,25 @@ export default function ProductDetailPage() {
             {/* Specifications Column (Right - 5 cols) */}
             <div className="lg:col-span-5 space-y-6">
               
-              {/* Collection Tag */}
-              {collection && (
-                <span className="font-mono text-[11px] md:text-[12px] uppercase tracking-[0.25em] block" style={{ color: '#C9A24A' }}>
-                  {colName}
-                </span>
-              )}
+              {/* Collection Tag & Weight */}
+              <div className="flex flex-wrap items-center gap-3">
+                {collection && (
+                  <span className="font-mono text-[11px] md:text-[12px] uppercase tracking-[0.25em]" style={{ color: '#C9A24A' }}>
+                    {colName}
+                  </span>
+                )}
+                {product.weight && (
+                  <>
+                    <span className="text-zinc-700">|</span>
+                    <span className="font-mono text-[11px] md:text-[12px] uppercase tracking-wider text-[#B8B0A8]">
+                      {product.weight} grams
+                    </span>
+                  </>
+                )}
+              </div>
 
               {/* Product Title */}
+
               <h1 className="font-serif text-[#F5EFE7] text-[clamp(28px,4vw,44px)] leading-[1.1] tracking-wide font-medium">
                 {name}
               </h1>

@@ -47,6 +47,7 @@ export default function EditProductPage() {
   const [sortOrder, setSortOrder] = useState('0');
   const [isFeatured, setIsFeatured] = useState(false);
   const [isPublished, setIsPublished] = useState(true);
+  const [weight, setWeight] = useState('');
 
   // SEO Fields
   const [metaTitleEn, setMetaTitleEn] = useState('');
@@ -99,6 +100,8 @@ export default function EditProductPage() {
       setSortOrder(prod.sort_order.toString());
       setIsFeatured(prod.is_featured);
       setIsPublished(prod.is_published);
+      setWeight(prod.weight !== null && prod.weight !== undefined ? prod.weight.toString() : '');
+
       
       setMetaTitleEn(prod.meta_title_en || '');
       setMetaTitleTe(prod.meta_title_te || '');
@@ -319,6 +322,16 @@ export default function EditProductPage() {
       setError('Collection folder selection is required.');
       return;
     }
+
+    let weightNum: number | null = null;
+    if (weight) {
+      weightNum = parseFloat(weight);
+      if (isNaN(weightNum) || weightNum <= 0) {
+        setError('Weight must be a valid number greater than 0.');
+        return;
+      }
+    }
+
     const orderNum = parseInt(sortOrder, 10);
     if (isNaN(orderNum)) {
       setError('Sort order must be a valid numeric integer.');
@@ -341,6 +354,7 @@ export default function EditProductPage() {
         is_featured: isFeatured,
         is_published: isPublished,
         sort_order: orderNum,
+        weight: weightNum,
         meta_title_en: metaTitleEn.trim() || null,
         meta_title_te: metaTitleTe.trim() || null,
         meta_description_en: metaDescEn.trim() || null,
@@ -358,6 +372,7 @@ export default function EditProductPage() {
         }
         throw prodErr;
       }
+
 
       // 2. Synchronize images:
       // Loop over the list of images, upserting them.
@@ -455,57 +470,13 @@ export default function EditProductPage() {
 
         {/* Form Container */}
         <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl">
-          {/* Section 1: Core Information */}
+          {/* PRIMARY WORKFLOW CARD */}
           <div className="bg-[#131315]/40 border border-[rgba(201,162,74,0.15)] p-6 rounded space-y-6">
             <h2 className="text-xs uppercase tracking-widest text-[#C9A24A] font-mono font-medium border-b border-[rgba(201,162,74,0.15)] pb-3">
-              1. Basic Information
+              Primary Specifications
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* English Name */}
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Product Name (English) *
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Traditional Gold Choker"
-                  value={nameEn}
-                  onChange={(e) => setNameEn(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
-                />
-              </div>
-
-              {/* Telugu Name */}
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Product Name (Telugu)
-                </label>
-                <input
-                  type="text"
-                  placeholder="ఉదాహరణ: బంగారు చోకర్"
-                  value={nameTe}
-                  onChange={(e) => setNameTe(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
-                />
-              </div>
-
-              {/* Slug */}
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Product Slug (URL unique key) *
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. traditional-gold-choker"
-                  value={slug}
-                  onChange={(e) => setSlug(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] font-mono text-xs rounded transition-all focus:border-[#C9A24A]"
-                />
-              </div>
-
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Collection Dropdown */}
               <div className="space-y-2">
                 <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
@@ -524,110 +495,56 @@ export default function EditProductPage() {
                 </select>
               </div>
 
-              {/* English Tagline */}
+              {/* Weight (grams) */}
               <div className="space-y-2">
                 <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Tagline / Subtitle (English)
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. Timeless elegance handcrafted in 22kt gold"
-                  value={taglineEn}
-                  onChange={(e) => setTaglineEn(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
-                />
-              </div>
-
-              {/* Telugu Tagline */}
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Tagline / Subtitle (Telugu)
-                </label>
-                <input
-                  type="text"
-                  placeholder="ఉదాహరణ: 22 క్యారెట్ల బంగారు హస్తకళ"
-                  value={taglineTe}
-                  onChange={(e) => setTaglineTe(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
-                />
-              </div>
-            </div>
-
-            {/* Descriptions */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Description (English)
-                </label>
-                <textarea
-                  rows={4}
-                  placeholder="Enter English description of the product design details, gold weight..."
-                  value={descEn}
-                  onChange={(e) => setDescEn(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A] resize-y"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Description (Telugu)
-                </label>
-                <textarea
-                  rows={4}
-                  placeholder="వివరాలను తెలుగులో వ్రాయండి..."
-                  value={descTe}
-                  onChange={(e) => setDescTe(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A] resize-y"
-                />
-              </div>
-            </div>
-
-            {/* Showcase Configurations */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-3">
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Sort Order Number
+                  Weight (grams)
                 </label>
                 <input
                   type="number"
-                  value={sortOrder}
-                  onChange={(e) => setSortOrder(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs font-mono rounded transition-all focus:border-[#C9A24A]"
+                  step="any"
+                  placeholder="e.g. 24.50 (optional if NULL)"
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
+                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
                 />
               </div>
 
-              <div className="flex items-center gap-3 pt-6">
-                <input
-                  id="featured-toggle"
-                  type="checkbox"
-                  checked={isFeatured}
-                  onChange={(e) => setIsFeatured(e.target.checked)}
-                  className="w-4 h-4 rounded bg-black/40 border-[rgba(201,162,74,0.3)] text-[#C9A24A] focus:ring-0 cursor-pointer"
-                />
-                <label htmlFor="featured-toggle" className="text-xs text-[#F5EFE7] font-light cursor-pointer select-none">
-                  Showcase on Homepage (Featured)
+              {/* Product Name */}
+              <div className="space-y-2">
+                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                  Product Name *
                 </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Bridal Choker"
+                  value={nameEn}
+                  onChange={(e) => setNameEn(e.target.value)}
+                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
+                />
               </div>
+            </div>
 
-              <div className="flex items-center gap-3 pt-6">
-                <input
-                  id="published-toggle"
-                  type="checkbox"
-                  checked={isPublished}
-                  onChange={(e) => setIsPublished(e.target.checked)}
-                  className="w-4 h-4 rounded bg-black/40 border-[rgba(201,162,74,0.3)] text-[#C9A24A] focus:ring-0 cursor-pointer"
-                />
-                <label htmlFor="published-toggle" className="text-xs text-[#F5EFE7] font-light cursor-pointer select-none">
-                  Publish Catalogue Item (Visible to public)
-                </label>
-              </div>
+            {/* Publish Toggle */}
+            <div className="flex items-center gap-3 pt-2">
+              <input
+                id="published-toggle"
+                type="checkbox"
+                checked={isPublished}
+                onChange={(e) => setIsPublished(e.target.checked)}
+                className="w-4 h-4 rounded bg-black/40 border-[rgba(201,162,74,0.3)] text-[#C9A24A] focus:ring-0 cursor-pointer"
+              />
+              <label htmlFor="published-toggle" className="text-xs text-[#F5EFE7] font-light cursor-pointer select-none">
+                Publish Catalogue Item (Visible to public storefront)
+              </label>
             </div>
           </div>
 
           {/* Section 2: Image Pipeline & Previews */}
           <div className="bg-[#131315]/40 border border-[rgba(201,162,74,0.15)] p-6 rounded space-y-6">
             <h2 className="text-xs uppercase tracking-widest text-[#C9A24A] font-mono font-medium border-b border-[rgba(201,162,74,0.15)] pb-3">
-              2. Catalog Images Gallery
+              Catalog Images Gallery
             </h2>
 
             {/* Drag & Drop Dropzone */}
@@ -667,7 +584,7 @@ export default function EditProductPage() {
             {/* Image Preview Grid */}
             {images.length > 0 ? (
               <div className="space-y-6">
-                {/* 1. Primary Cover Showcase */}
+                {/* Primary Cover Showcase */}
                 {(() => {
                   const primaryImg = images.find(img => img.is_primary) || images[0];
                   const previewUrl = getCloudinaryImageUrl(primaryImg.cloudinary_public_id, CLOUDINARY_PRESETS.card);
@@ -690,7 +607,7 @@ export default function EditProductPage() {
                   );
                 })()}
 
-                {/* 2. Gallery Deck grid */}
+                {/* Gallery Deck grid */}
                 <div className="space-y-3">
                   <span className="text-[10px] text-[#B8B0A8]/80 font-mono block">
                     Gallery Deck Sequence ({images.length} slides)
@@ -801,70 +718,194 @@ export default function EditProductPage() {
             )}
           </div>
 
-          {/* Section 3: SEO metadata */}
-          <div className="bg-[#131315]/40 border border-[rgba(201,162,74,0.15)] p-6 rounded space-y-6">
-            <h2 className="text-xs uppercase tracking-widest text-[#C9A24A] font-mono font-medium border-b border-[rgba(201,162,74,0.15)] pb-3">
-              3. SEO Metadata (Optional)
-            </h2>
+          {/* COLLAPSED ADVANCED SETTINGS SECTION */}
+          <details className="border border-[rgba(201,162,74,0.15)] rounded bg-[#131315]/20 p-6 space-y-6">
+            <summary className="cursor-pointer text-xs uppercase tracking-widest text-[#C9A24A] font-mono font-medium select-none outline-none">
+              Advanced Settings (Optional)
+            </summary>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Meta title English */}
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Meta Title (English)
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. Traditional Gold Choker Necklace | TPG Jewellers"
-                  value={metaTitleEn}
-                  onChange={(e) => setMetaTitleEn(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
-                />
+            <div className="space-y-6 pt-6 border-t border-[rgba(201,162,74,0.1)]">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Telugu Name */}
+                <div className="space-y-2">
+                  <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                    Product Name (Telugu)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="ఉదాహరణ: బంగారు చోకర్"
+                    value={nameTe}
+                    onChange={(e) => setNameTe(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
+                  />
+                </div>
+
+                {/* Slug */}
+                <div className="space-y-2">
+                  <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                    Product Slug (URL unique key)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. traditional-gold-choker"
+                    value={slug}
+                    onChange={(e) => setSlug(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] font-mono text-xs rounded transition-all focus:border-[#C9A24A]"
+                  />
+                </div>
+
+                {/* English Tagline */}
+                <div className="space-y-2">
+                  <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                    Tagline / Subtitle (English)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Timeless elegance handcrafted in 22kt gold"
+                    value={taglineEn}
+                    onChange={(e) => setTaglineEn(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
+                  />
+                </div>
+
+                {/* Telugu Tagline */}
+                <div className="space-y-2">
+                  <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                    Tagline / Subtitle (Telugu)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="ఉదాహరణ: 22 క్యారెట్ల బంగారు హస్తకళ"
+                    value={taglineTe}
+                    onChange={(e) => setTaglineTe(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
+                  />
+                </div>
               </div>
 
-              {/* Meta title Telugu */}
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Meta Title (Telugu)
-                </label>
-                <input
-                  type="text"
-                  placeholder="ఉదాహరణ: సాంప్రదాయ బంగారు చోకర్ హారము"
-                  value={metaTitleTe}
-                  onChange={(e) => setMetaTitleTe(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
-                />
+              {/* Descriptions */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                    Description (English)
+                  </label>
+                  <textarea
+                    rows={4}
+                    placeholder="Enter English description of the product design details, gold weight..."
+                    value={descEn}
+                    onChange={(e) => setDescEn(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A] resize-y"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                    Description (Telugu)
+                  </label>
+                  <textarea
+                    rows={4}
+                    placeholder="వివరాలను తెలుగులో వ్రాయండి..."
+                    value={descTe}
+                    onChange={(e) => setDescTe(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A] resize-y"
+                  />
+                </div>
               </div>
 
-              {/* Meta description English */}
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Meta Description (English)
-                </label>
-                <textarea
-                  rows={3}
-                  placeholder="English search results snippet..."
-                  value={metaDescEn}
-                  onChange={(e) => setMetaDescEn(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A] resize-none"
-                />
+              {/* Showcase Configurations */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-3">
+                <div className="space-y-2">
+                  <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                    Sort Order Number
+                  </label>
+                  <input
+                    type="number"
+                    value={sortOrder}
+                    onChange={(e) => setSortOrder(e.target.value)}
+                    className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs font-mono rounded transition-all focus:border-[#C9A24A]"
+                  />
+                </div>
+
+                <div className="flex items-center gap-3 pt-6">
+                  <input
+                    id="featured-toggle"
+                    type="checkbox"
+                    checked={isFeatured}
+                    onChange={(e) => setIsFeatured(e.target.checked)}
+                    className="w-4 h-4 rounded bg-black/40 border-[rgba(201,162,74,0.3)] text-[#C9A24A] focus:ring-0 cursor-pointer"
+                  />
+                  <label htmlFor="featured-toggle" className="text-xs text-[#F5EFE7] font-light cursor-pointer select-none">
+                    Showcase on Homepage (Featured)
+                  </label>
+                </div>
               </div>
 
-              {/* Meta description Telugu */}
-              <div className="space-y-2">
-                <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                  Meta Description (Telugu)
-                </label>
-                <textarea
-                  rows={3}
-                  placeholder="తెలుగు సెర్చ్ వివరణ..."
-                  value={metaDescTe}
-                  onChange={(e) => setMetaDescTe(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A] resize-none"
-                />
+              {/* SEO metadata */}
+              <div className="border-t border-white/[0.04] pt-6 space-y-6">
+                <h3 className="text-xs uppercase tracking-widest text-[#B8B0A8] font-mono font-medium">
+                  Search Engine Optimization (SEO)
+                </h3>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Meta title English */}
+                  <div className="space-y-2">
+                    <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                      Meta Title (English)
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Traditional Gold Choker Necklace | TPG Jewellers"
+                      value={metaTitleEn}
+                      onChange={(e) => setMetaTitleEn(e.target.value)}
+                      className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
+                    />
+                  </div>
+
+                  {/* Meta title Telugu */}
+                  <div className="space-y-2">
+                    <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                      Meta Title (Telugu)
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="ఉదాహరణ: సాంప్రదాయ బంగారు చోకర్ హారము"
+                      value={metaTitleTe}
+                      onChange={(e) => setMetaTitleTe(e.target.value)}
+                      className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
+                    />
+                  </div>
+
+                  {/* Meta description English */}
+                  <div className="space-y-2">
+                    <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                      Meta Description (English)
+                    </label>
+                    <textarea
+                      rows={3}
+                      placeholder="English search results snippet..."
+                      value={metaDescEn}
+                      onChange={(e) => setMetaDescEn(e.target.value)}
+                      className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A] resize-none"
+                    />
+                  </div>
+
+                  {/* Meta description Telugu */}
+                  <div className="space-y-2">
+                    <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
+                      Meta Description (Telugu)
+                    </label>
+                    <textarea
+                      rows={3}
+                      placeholder="తెలుగు సెర్చ్ వివరణ..."
+                      value={metaDescTe}
+                      onChange={(e) => setMetaDescTe(e.target.value)}
+                      className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A] resize-none"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </details>
 
           {/* Form Actions */}
           <div className="flex gap-4 items-center justify-end">
@@ -892,6 +933,7 @@ export default function EditProductPage() {
             </button>
           </div>
         </form>
+
 
         {/* Database Image Row Delete Confirmation Overlay */}
         {imageToDelete && (

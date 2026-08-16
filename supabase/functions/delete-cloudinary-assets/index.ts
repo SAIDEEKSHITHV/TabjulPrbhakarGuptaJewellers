@@ -84,6 +84,9 @@ serve(async (req) => {
 
     // 4. Dispatch deletion requests to Cloudinary API
     const deletionResults = [];
+    let hasFailure = false;
+    let failureReason = '';
+    
     for (const publicId of public_ids) {
       const timestamp = Math.round(new Date().getTime() / 1000);
       
@@ -108,8 +111,36 @@ serve(async (req) => {
         body: formData
       });
 
+      if (!response.ok) {
+        hasFailure = true;
+        const errText = await response.text();
+        failureReason = `Cloudinary returned status ${response.status}: ${errText}`;
+        deletionResults.push({ public_id: publicId, status: 'failed', error: failureReason });
+        continue;
+      }
+
       const result = await response.json();
-      deletionResults.push({ public_id: publicId, status: result.result });
+      if (result.error) {
+        hasFailure = true;
+        failureReason = result.error.message;
+        deletionResults.push({ public_id: publicId, status: 'failed', error: result.error.message });
+      } else {
+        deletionResults.push({ 
+          public_id: publicId, 
+          status: result.result === 'ok' ? 'deleted' : result.result 
+        });
+        if (result.result !== 'ok' && result.result !== 'not found') {
+          hasFailure = true;
+          failureReason = `Deletion status: ${result.result}`;
+        }
+      }
+    }
+
+    if (hasFailure) {
+      return new Response(
+        JSON.stringify({ error: `Cloudinary cleanup failed: ${failureReason}`, results: deletionResults }), 
+        { status: 502, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
     return new Response(
