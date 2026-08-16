@@ -207,6 +207,7 @@ export default function EditProductPage() {
     if (!imageToDelete) return;
     setIsDeletingImage(true);
     setError(null);
+    let dbDeleted = false;
     try {
       const publicId = imageToDelete.cloudinary_public_id;
 
@@ -217,29 +218,47 @@ export default function EditProductPage() {
         .eq('id', imageToDelete.id);
 
       if (dbErr) throw dbErr;
+      dbDeleted = true;
 
       // Call secure edge function to delete the asset from Cloudinary
       if (publicId) {
         const { data: sessionData } = await supabase.auth.getSession();
         const jwt = sessionData.session?.access_token;
-        if (jwt) {
-          fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/delete-cloudinary-assets`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${jwt}`
-            },
-            body: JSON.stringify({ public_ids: [publicId] })
-          }).catch(err => console.error('Cloudinary asset delete call failed:', err));
+        if (!jwt) {
+          throw new Error('Authentication session lost. Unable to clean up Cloudinary assets.');
         }
+
+        const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/delete-cloudinary-assets`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwt}`
+          },
+          body: JSON.stringify({ public_ids: [publicId] })
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error || errData.message || `Server returned HTTP ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log('Secure asset deletion completed:', result);
       }
 
       // Update local state
       setImages(prev => prev.filter(img => img.id !== imageToDelete.id));
       setImageToDelete(null);
     } catch (err) {
-      console.error('Error deleting image row:', err);
-      setError(err instanceof Error ? err.message : 'Failed to remove image from database.');
+      console.error('Error deleting image or cleaning up asset:', err);
+      if (dbDeleted) {
+        setError(`Image metadata was removed from the database, but Cloudinary asset cleanup failed: ${err instanceof Error ? err.message : String(err)}. Please manually remove the image from Cloudinary.`);
+        // Still remove from state so UI stays in sync with DB
+        setImages(prev => prev.filter(img => img.id !== imageToDelete.id));
+        setImageToDelete(null);
+      } else {
+        setError(err instanceof Error ? err.message : 'Failed to remove image from database.');
+      }
     } finally {
       setIsDeletingImage(false);
     }

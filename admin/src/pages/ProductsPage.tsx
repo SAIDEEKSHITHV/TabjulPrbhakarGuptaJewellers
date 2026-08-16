@@ -85,6 +85,8 @@ export default function ProductsPage() {
     if (!deleteTarget) return;
     setIsDeleting(true);
     setError(null);
+    setSuccessMsg(null);
+    let dbDeleted = false;
     try {
       // Get Cloudinary public IDs to delete before deleting the database row
       const publicIds = deleteTarget.product_images
@@ -100,38 +102,48 @@ export default function ProductsPage() {
         .eq('id', deleteTarget.id);
 
       if (deleteErr) throw deleteErr;
+      dbDeleted = true;
 
-      // Call secure edge function to delete the assets asynchronously from Cloudinary
+      // Call secure edge function to delete the assets from Cloudinary
       if (publicIds.length > 0) {
         const { data: sessionData } = await supabase.auth.getSession();
         const jwt = sessionData.session?.access_token;
-        if (jwt) {
-          fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/delete-cloudinary-assets`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${jwt}`
-            },
-            body: JSON.stringify({ public_ids: publicIds })
-          })
-          .then(res => res.json())
-          .then(data => console.log('Secure asset deletion triggered:', data))
-          .catch(err => console.error('Cloudinary deletion API call failed:', err));
+        if (!jwt) {
+          throw new Error('Authentication session lost. Unable to clean up Cloudinary assets.');
         }
+
+        const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/delete-cloudinary-assets`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${jwt}`
+          },
+          body: JSON.stringify({ public_ids: publicIds })
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error || errData.message || `Server returned HTTP ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log('Secure asset deletion completed:', result);
       }
 
       // Show success
-      setSuccessMsg(`Successfully deleted "${deleteTarget.name_en}" and queued its Cloudinary images for deletion.`);
+      setSuccessMsg(`Successfully deleted "${deleteTarget.name_en}" and cleaned up its images from Cloudinary.`);
       setDeleteTarget(null);
-      
-      // Refresh local list
       await fetchData();
-
-      // Clear success alert after 6 seconds
       setTimeout(() => setSuccessMsg(null), 6000);
     } catch (err) {
-      console.error('Error deleting product:', err);
-      setError(err instanceof Error ? err.message : 'Failed to delete product. Check database policies.');
+      console.error('Error deleting product or cleaning up assets:', err);
+      if (dbDeleted) {
+        setError(`Product "${deleteTarget.name_en}" was deleted from the catalog, but Cloudinary image cleanup failed: ${err instanceof Error ? err.message : String(err)}. Please manually remove the associated images from Cloudinary.`);
+        setDeleteTarget(null);
+        await fetchData();
+      } else {
+        setError(err instanceof Error ? err.message : 'Failed to delete product. Check database policies.');
+      }
     } finally {
       setIsDeleting(false);
     }
