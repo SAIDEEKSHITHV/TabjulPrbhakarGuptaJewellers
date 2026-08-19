@@ -367,7 +367,7 @@ export default function ProductDetailPage() {
                   const whatsappMessage = `*PRODUCT ENQUIRY*\n\n*Product Name:* ${name}\n*Product ID:* ${product.id}\n\n*Product Link:* ${detailUrl}${primaryImageUrl ? `\n*Image Link:* ${primaryImageUrl}` : ''}`;
                   return (
                     <a
-                      href={`https://wa.me/919849289421?text=${encodeURIComponent(whatsappMessage)}`}
+                      href={`https://wa.me/919247611116?text=${encodeURIComponent(whatsappMessage)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackEvent('click_whatsapp_product', 'Engagement', name)}

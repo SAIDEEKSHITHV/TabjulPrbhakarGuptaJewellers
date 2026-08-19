@@ -122,7 +122,7 @@ export default function GoldRatePage() {
       "image": "https://tabjulprabhakarguptajewellers.com/images/showroom_exterior.jpg",
       "@id": "https://tabjulprabhakarguptajewellers.com/#business",
       "url": "https://tabjulprabhakarguptajewellers.com",
-      "telephone": "+919849289421",
+      "telephone": "+919247611116",
       "priceRange": "$$$",
       "address": {
         "@type": "PostalAddress",
@@ -239,7 +239,7 @@ export default function GoldRatePage() {
                 : 'We are currently unable to retrieve today\'s live gold rates from the market. Please try again later or contact our showroom directly for current pricing.'}
             </p>
             <a
-              href="tel:+919849289421"
+              href="tel:+919247611116"
               className="px-6 py-2.5 border border-[#D4AF37] text-[#D4AF37] text-[12px] font-sans uppercase tracking-[0.15em] font-medium hover:bg-[#D4AF37] hover:text-[#111111] transition-all duration-300"
             >
               {i18n.language === 'te' ? 'షోరూమ్‌కి కాల్ చేయండి' : 'Call Showroom'}
@@ -421,7 +421,7 @@ export default function GoldRatePage() {
                   {t('goldRatePage.ctaVisit')}
                 </a>
                 <a
-                  href="https://wa.me/919849289421"
+                  href="https://wa.me/919247611116"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-3 border border-[rgba(245,239,231,0.2)] text-[#F5EFE7] text-[12px] font-sans uppercase tracking-[0.15em] font-medium hover:border-[#C9A24A] hover:text-[#C9A24A] transition-all duration-300 text-center"

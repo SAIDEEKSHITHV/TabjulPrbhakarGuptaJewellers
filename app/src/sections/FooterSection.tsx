@@ -66,7 +66,7 @@ export default function FooterSection() {
               <Instagram size={24} strokeWidth={1.5} />
             </a>
             <a
-              href="https://wa.me/919849289421"
+              href="https://wa.me/919247611116"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#F5EFE7] hover:text-[#C9A24A] transition-colors duration-300"
@@ -132,7 +132,7 @@ export default function FooterSection() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-1">
             <a
-              href="tel:+919849289421"
+              href="tel:+919247611116"
               className="font-sans text-[#B8B0A8] text-[12px] md:text-[13px] font-light hover:text-[#C9A24A] transition-colors duration-300"
             >
               {t('footer.phone')}

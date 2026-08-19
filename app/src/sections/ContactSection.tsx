@@ -116,8 +116,8 @@ export default function ContactSection() {
                 <h3 className="text-[#C9A24A] text-[13px] uppercase tracking-[0.15em] mb-3 font-medium flex items-center justify-center lg:justify-start gap-2">
                   <Phone size={16} /> {t('contact.contactTitle')}
                 </h3>
-                <a href="tel:+919849289421" className="block text-[15px] hover:text-[#F5EFE7] transition-colors mb-1">
-                  +91 98492 89421
+                <a href="tel:+919247611116" className="block text-[15px] hover:text-[#F5EFE7] transition-colors mb-1">
+                  +91 92476 11116
                 </a>
                 <a href="mailto:tabjulprabhakargupta@gmail.com" className="block text-[15px] hover:text-[#F5EFE7] transition-colors">
                   tabjulprabhakargupta@gmail.com
@@ -168,7 +168,7 @@ export default function ContactSection() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8">
             {/* Call Now */}
             <a
-              href="tel:+919849289421"
+              href="tel:+919247611116"
               onClick={() => trackEvent('click_call_contact', 'Engagement', 'Contact Section')}
               className="group inline-flex items-center justify-center gap-2.5 px-5 py-3 border border-[rgba(201,162,74,0.35)] rounded-lg text-[#F5EFE7] font-sans text-[12px] md:text-[13px] uppercase tracking-[0.12em] font-medium hover:bg-[rgba(201,162,74,0.1)] hover:border-[#C9A24A] hover:text-[#C9A24A] transition-all duration-300"
             >
@@ -190,7 +190,7 @@ export default function ContactSection() {
 
             {/* Chat on WhatsApp */}
             <a
-              href="https://wa.me/919849289421"
+              href="https://wa.me/919247611116"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent('click_whatsapp_contact', 'Engagement', 'Contact Section')}

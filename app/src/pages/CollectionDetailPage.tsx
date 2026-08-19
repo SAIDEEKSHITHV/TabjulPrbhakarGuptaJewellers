@@ -272,7 +272,7 @@ export default function CollectionDetailPage() {
                 const prodTagline = isTe ? prod.tagline_te || prod.tagline_en : prod.tagline_en;
 
                 const detailUrl = `${window.location.origin}/products/${prod.slug}`;
-                const whatsappNumber = '919849289421';
+                const whatsappNumber = '919247611116';
                 const whatsappMessage = `*PRODUCT ENQUIRY*\n\n*Product Name:* ${prodName}\n*Product ID:* ${prod.id}\n\n*Product Link:* ${detailUrl}${cover ? `\n*Image Link:* ${cover}` : ''}`;
                 const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
