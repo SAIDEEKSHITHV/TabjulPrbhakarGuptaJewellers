@@ -78,7 +78,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/collections/bridal?lang=en" />
     <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/collections/bridal?lang=te" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/collections/bridal" />
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -87,7 +87,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/collections/gold?lang=en" />
     <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/collections/gold?lang=te" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/collections/gold" />
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -96,7 +96,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/collections/diamond?lang=en" />
     <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/collections/diamond?lang=te" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/collections/diamond" />
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -105,7 +105,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/collections/temple?lang=en" />
     <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/collections/temple?lang=te" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/collections/temple" />
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -114,8 +114,17 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/collections/daily-wear?lang=en" />
     <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/collections/daily-wear?lang=te" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/collections/daily-wear" />
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tpgjewellers.com/products/gold-chain</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tpgjewellers.com/products/gold-chain?lang=en" />
+    <xhtml:link rel="alternate" hreflang="te" href="https://tpgjewellers.com/products/gold-chain?lang=te" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tpgjewellers.com/products/gold-chain" />
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>

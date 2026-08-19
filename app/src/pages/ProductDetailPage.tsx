@@ -361,16 +361,23 @@ export default function ProductDetailPage() {
 
               {/* Inquiry CTA */}
               <div className="pt-6">
-                <a
-                  href={`https://wa.me/919849289421?text=${encodeURIComponent(`Hello, I am interested in ${name}. I would like to know more about this piece.`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('click_whatsapp_product', 'Engagement', name)}
-                  className="group inline-flex items-center gap-4 relative overflow-hidden px-8 py-3.5 border border-[#C9A24A]/40 text-[#C9A24A] hover:text-[#C9A24A] font-sans text-xs uppercase tracking-[0.18em] font-medium rounded-full hover:bg-[rgba(201,162,74,0.06)] hover:border-[#C9A24A] transition-all duration-300"
-                >
-                  <MessageSquare size={14} />
-                  <span>Inquire About This Piece</span>
-                </a>
+                {(() => {
+                  const primaryImageUrl = activeImage ? getProductImageUrl(activeImage, CLOUDINARY_PRESETS.gallery) : '';
+                  const detailUrl = window.location.href;
+                  const whatsappMessage = `✨ *Product Enquiry* ✨\n\n👤 *Product Name:* ${name}\n🆔 *Product ID:* ${product.id}\n\n🔗 *Product Link:* ${detailUrl}${primaryImageUrl ? `\n🖼️ *Image Link:* ${primaryImageUrl}` : ''}`;
+                  return (
+                    <a
+                      href={`https://wa.me/919849289421?text=${encodeURIComponent(whatsappMessage)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackEvent('click_whatsapp_product', 'Engagement', name)}
+                      className="group inline-flex items-center gap-4 relative overflow-hidden px-8 py-3.5 border border-[#C9A24A]/40 text-[#C9A24A] hover:text-[#0B0B0C] hover:bg-[#C9A24A] font-sans text-xs uppercase tracking-[0.18em] font-medium rounded-full transition-all duration-300"
+                    >
+                      <MessageSquare size={14} />
+                      <span>Inquire About This Piece</span>
+                    </a>
+                  );
+                })()}
               </div>
 
             </div>

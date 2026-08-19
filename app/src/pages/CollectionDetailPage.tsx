@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { gsap } from 'gsap';
-import { ArrowLeft, AlertCircle, Loader2 } from 'lucide-react';
+import { ArrowLeft, AlertCircle, Loader2, MessageSquare } from 'lucide-react';
 import { supabase, catalogService, type Collection, type Product } from '../lib/supabaseClient';
 import { getCloudinaryImageUrl, CLOUDINARY_PRESETS } from '../lib/cloudinary';
 import { trackEvent } from '../lib/analytics';
@@ -271,38 +271,66 @@ export default function CollectionDetailPage() {
                 const prodName = isTe ? prod.name_te || prod.name_en : prod.name_en;
                 const prodTagline = isTe ? prod.tagline_te || prod.tagline_en : prod.tagline_en;
 
-                return (
-                  <Link
-                    key={prod.id}
-                    to={`/products/${prod.slug}`}
-                    className="group flex flex-col text-left cursor-pointer"
-                  >
-                    {/* Card Image */}
-                    <div className="relative aspect-[4/3] w-full overflow-hidden border border-[rgba(201,162,74,0.15)] bg-black rounded transition-all duration-300">
-                      {cover ? (
-                        <img
-                          src={cover}
-                          alt={prodName}
-                          className="w-full h-full object-cover transition-all duration-700 ease-out brightness-[0.88] group-hover:brightness-[1.02] group-hover:scale-[1.05]"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-zinc-700 text-xs font-mono uppercase tracking-wider">
-                          No Image Available
-                        </div>
-                      )}
-                      <div className="absolute inset-2 border border-[rgba(201,162,74,0)] group-hover:border-[rgba(201,162,74,0.25)] transition-all duration-500 pointer-events-none" />
-                    </div>
+                const detailUrl = `${window.location.origin}/products/${prod.slug}`;
+                const whatsappNumber = '919849289421';
+                const whatsappMessage = `✨ *Product Enquiry* ✨\n\n👤 *Product Name:* ${prodName}\n🆔 *Product ID:* ${prod.id}\n\n🔗 *Product Link:* ${detailUrl}${cover ? `\n🖼️ *Image Link:* ${cover}` : ''}`;
+                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-                    {/* Card Metadata */}
-                    <h3 className="font-serif text-[#F5EFE7] text-lg mt-4 group-hover:text-[#C9A24A] transition-colors duration-300 tracking-wide line-clamp-1">
-                      {prodName}
-                    </h3>
-                    {prodTagline && (
-                      <p className="font-sans text-[#B8B0A8] text-xs font-light mt-1 line-clamp-1 italic">
-                        {prodTagline}
-                      </p>
-                    )}
-                  </Link>
+                return (
+                  <div
+                    key={prod.id}
+                    className="group/card flex flex-col text-left justify-between h-full bg-[#131315]/40 border border-white/[0.03] p-4 rounded hover:border-[rgba(201,162,74,0.3)] transition-all duration-300"
+                  >
+                    <Link
+                      to={`/products/${prod.slug}`}
+                      className="flex flex-col text-left cursor-pointer"
+                    >
+                      {/* Card Image */}
+                      <div className="relative aspect-[4/3] w-full overflow-hidden border border-[rgba(201,162,74,0.15)] bg-black rounded transition-all duration-300">
+                        {cover ? (
+                          <img
+                            src={cover}
+                            alt={prodName}
+                            className="w-full h-full object-cover transition-all duration-700 ease-out brightness-[0.88] group-hover/card:brightness-[1.02] group-hover/card:scale-[1.05]"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-zinc-700 text-xs font-mono uppercase tracking-wider">
+                            No Image Available
+                          </div>
+                        )}
+                        <div className="absolute inset-2 border border-[rgba(201,162,74,0)] group-hover/card:border-[rgba(201,162,74,0.25)] transition-all duration-500 pointer-events-none" />
+                      </div>
+
+                      {/* Card Metadata */}
+                      <h3 className="font-serif text-[#F5EFE7] text-lg mt-4 group-hover/card:text-[#C9A24A] transition-colors duration-300 tracking-wide line-clamp-1">
+                        {prodName}
+                      </h3>
+                      {prodTagline ? (
+                        <p className="font-sans text-[#B8B0A8] text-xs font-light mt-1 line-clamp-1 italic mb-4">
+                          {prodTagline}
+                        </p>
+                      ) : (
+                        <div className="h-4 mb-4" />
+                      )}
+                    </Link>
+
+                    {/* Enquiry CTA */}
+                    <div className="mt-auto pt-3 border-t border-white/5">
+                      <a
+                        href={whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          trackEvent('click_whatsapp_product', 'Engagement', prodName);
+                        }}
+                        className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 border border-[#C9A24A]/40 text-[#C9A24A] hover:text-[#0B0B0C] hover:bg-[#C9A24A] font-sans text-[11px] uppercase tracking-wider font-medium rounded transition-all duration-300"
+                      >
+                        <MessageSquare size={12} />
+                        <span>Enquire about this product</span>
+                      </a>
+                    </div>
+                  </div>
                 );
               })}
             </div>
