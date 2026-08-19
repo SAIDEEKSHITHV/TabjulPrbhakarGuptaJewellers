@@ -364,7 +364,7 @@ export default function ProductDetailPage() {
                 {(() => {
                   const primaryImageUrl = activeImage ? getProductImageUrl(activeImage, CLOUDINARY_PRESETS.gallery) : '';
                   const detailUrl = window.location.href;
-                  const whatsappMessage = `✨ *Product Enquiry* ✨\n\n👤 *Product Name:* ${name}\n🆔 *Product ID:* ${product.id}\n\n🔗 *Product Link:* ${detailUrl}${primaryImageUrl ? `\n🖼️ *Image Link:* ${primaryImageUrl}` : ''}`;
+                  const whatsappMessage = `*PRODUCT ENQUIRY*\n\n*Product Name:* ${name}\n*Product ID:* ${product.id}\n\n*Product Link:* ${detailUrl}${primaryImageUrl ? `\n*Image Link:* ${primaryImageUrl}` : ''}`;
                   return (
                     <a
                       href={`https://wa.me/919849289421?text=${encodeURIComponent(whatsappMessage)}`}
