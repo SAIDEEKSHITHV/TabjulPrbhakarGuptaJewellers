@@ -268,7 +268,7 @@ export default function CollectionDetailPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
               {products.map((prod) => {
                 const cover = getProductCover(prod);
-                const prodName = isTe ? prod.name_te || prod.name_en : prod.name_en;
+                const prodName = prod.name_en;
                 const prodTagline = isTe ? prod.tagline_te || prod.tagline_en : prod.tagline_en;
 
                 const detailUrl = `${window.location.origin}/products/${prod.slug}`;

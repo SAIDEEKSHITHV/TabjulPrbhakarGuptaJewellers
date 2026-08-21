@@ -35,7 +35,6 @@ export default function AddProductPage() {
 
   // Form Fields
   const [nameEn, setNameEn] = useState('');
-  const [nameTe, setNameTe] = useState('');
   const [slug, setSlug] = useState('');
   const [selectedCollection, setSelectedCollection] = useState('');
   const [taglineEn, setTaglineEn] = useState('');
@@ -232,7 +231,7 @@ export default function AddProductPage() {
 
     try {
       let finalNameEn = nameEn.trim();
-      let finalNameTe = nameTe.trim();
+      let finalNameTe = '';
       let finalSlug = slug.trim();
 
       let attempts = 0;
@@ -259,17 +258,14 @@ export default function AddProductPage() {
           const formattedSeq = String(sequenceNum).padStart(3, '0');
 
           const colNameEn = col.name_en;
-          const colNameTe = col.name_te || colNameEn;
 
           // Strip category suffixes for friendly naming
           const cleanColNameEn = colNameEn.replace(/\b(jewellery|jewelry)\b/gi, '').trim();
-          const cleanColNameTe = colNameTe.replace(/\b(నగలు|ఆభరణాలు)\b/gi, '').trim();
 
           const settings = col.settings || {};
           const defaultCategoryVal = settings.default_category || cleanColNameEn;
 
           const nameEnPattern = settings.default_title_en_pattern || '{category} #{sequence}';
-          const nameTePattern = settings.default_title_te_pattern || '{category} #{sequence}';
 
           finalNameEn = nameEnPattern
             .replace(/{category}/g, defaultCategoryVal)
@@ -277,11 +273,7 @@ export default function AddProductPage() {
             .replace(/{sequence}/g, formattedSeq)
             .replace(/{weight}/g, String(weightNum));
 
-          finalNameTe = nameTePattern
-            .replace(/{category}/g, settings.default_category || cleanColNameTe)
-            .replace(/{collection}/g, cleanColNameTe)
-            .replace(/{sequence}/g, formattedSeq)
-            .replace(/{weight}/g, String(weightNum));
+          finalNameTe = finalNameEn;
         }
 
         // 2. Determine Slug
@@ -339,7 +331,7 @@ export default function AddProductPage() {
           collection_id: selectedCollection,
           slug: finalSlug,
           name_en: finalNameEn,
-          name_te: finalNameTe || null,
+          name_te: finalNameEn,
           tagline_en: taglineEn.trim() || null,
           tagline_te: taglineTe.trim() || null,
           description_en: interpolatedDescEn || null,
@@ -702,20 +694,6 @@ export default function AddProductPage() {
 
             <div className="space-y-6 pt-6 border-t border-[rgba(201,162,74,0.1)]">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Telugu Name */}
-                <div className="space-y-2">
-                  <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                    Product Name (Telugu)
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="ఉదాహరణ: బంగారు చోకర్"
-                    value={nameTe}
-                    onChange={(e) => setNameTe(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
-                  />
-                </div>
-
                 {/* Slug */}
                 <div className="space-y-2">
                   <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">

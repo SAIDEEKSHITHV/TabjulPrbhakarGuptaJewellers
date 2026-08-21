@@ -35,7 +35,7 @@ export default function ProductDetailPage() {
     
     // Fallback order for Title
     const pageTitle = isTe
-      ? product.meta_title_te || product.meta_title_en || product.name_te || product.name_en
+      ? product.meta_title_te || product.meta_title_en || product.name_en
       : product.meta_title_en || product.name_en;
 
     // Fallback order for Description
@@ -43,7 +43,7 @@ export default function ProductDetailPage() {
       ? product.meta_description_te || product.meta_description_en || product.description_te || product.description_en || ''
       : product.meta_description_en || product.description_en || '';
 
-    const displayName = isTe ? product.name_te || product.name_en : product.name_en;
+    const displayName = product.name_en;
 
     document.title = `${pageTitle} | ${t('nav.brandName')}`;
 
@@ -198,7 +198,7 @@ export default function ProductDetailPage() {
 
   // Render variables
   const isTe = i18n.language === 'te';
-  const name = product ? (isTe ? product.name_te || product.name_en : product.name_en) : '';
+  const name = product ? product.name_en : '';
   const tagline = product ? (isTe ? product.tagline_te || product.tagline_en : product.tagline_en) : '';
   const desc = product ? (isTe ? product.description_te || product.description_en : product.description_en) : '';
   const colName = collection ? (isTe ? collection.name_te || collection.name_en : collection.name_en) : '';

@@ -37,7 +37,6 @@ export default function EditProductPage() {
 
   // Form Fields
   const [nameEn, setNameEn] = useState('');
-  const [nameTe, setNameTe] = useState('');
   const [slug, setSlug] = useState('');
   const [selectedCollection, setSelectedCollection] = useState('');
   const [taglineEn, setTaglineEn] = useState('');
@@ -90,7 +89,6 @@ export default function EditProductPage() {
 
       // Populate states
       setNameEn(prod.name_en);
-      setNameTe(prod.name_te || '');
       setSlug(prod.slug);
       setSelectedCollection(prod.collection_id);
       setTaglineEn(prod.tagline_en || '');
@@ -346,7 +344,7 @@ export default function EditProductPage() {
         collection_id: selectedCollection,
         slug: slug.trim(),
         name_en: nameEn.trim(),
-        name_te: nameTe.trim() || null,
+        name_te: nameEn.trim(),
         tagline_en: taglineEn.trim() || null,
         tagline_te: taglineTe.trim() || null,
         description_en: descEn.trim() || null,
@@ -726,19 +724,6 @@ export default function EditProductPage() {
 
             <div className="space-y-6 pt-6 border-t border-[rgba(201,162,74,0.1)]">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Telugu Name */}
-                <div className="space-y-2">
-                  <label className="block text-[10px] uppercase tracking-wider text-[#B8B0A8] font-mono">
-                    Product Name (Telugu)
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="ఉదాహరణ: బంగారు చోకర్"
-                    value={nameTe}
-                    onChange={(e) => setNameTe(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-black/40 border border-[rgba(201,162,74,0.15)] text-[#F5EFE7] text-xs rounded transition-all focus:border-[#C9A24A]"
-                  />
-                </div>
 
                 {/* Slug */}
                 <div className="space-y-2">
